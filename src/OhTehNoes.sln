@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhTehNoes", "OhTehNoes\OhTehNoes.csproj", "{00329996-2FAC-46CA-BC48-D001F99F92E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhTehNoes.Tasks", "OhTehNoes.Tasks\OhTehNoes.Tasks.csproj", "{4C660948-21CA-4E46-BF6F-E3DF089051FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OhTehNoes.Engine", "OhTehNoes.Engine\OhTehNoes.Engine.csproj", "{E0112FC7-6ED4-452D-83A7-B628708AEF37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00329996-2FAC-46CA-BC48-D001F99F92E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00329996-2FAC-46CA-BC48-D001F99F92E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00329996-2FAC-46CA-BC48-D001F99F92E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00329996-2FAC-46CA-BC48-D001F99F92E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C660948-21CA-4E46-BF6F-E3DF089051FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C660948-21CA-4E46-BF6F-E3DF089051FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C660948-21CA-4E46-BF6F-E3DF089051FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C660948-21CA-4E46-BF6F-E3DF089051FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0112FC7-6ED4-452D-83A7-B628708AEF37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0112FC7-6ED4-452D-83A7-B628708AEF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0112FC7-6ED4-452D-83A7-B628708AEF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0112FC7-6ED4-452D-83A7-B628708AEF37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
