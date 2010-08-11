@@ -18,7 +18,7 @@ namespace OhTehNoes.Tasks
 
         public override void Run()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

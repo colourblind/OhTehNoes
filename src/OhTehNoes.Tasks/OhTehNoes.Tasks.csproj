@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DiskSpaceTask.cs" />
+    <Compile Include="FileUpToDateTask.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryReturnsRowsTask.cs" />
     <Compile Include="SiteStatusTask.cs" />
     <Compile Include="SslCertificateTask.cs" />
   </ItemGroup>
