@@ -4,13 +4,9 @@ using System.Xml;
 
 namespace OhTehNoes.Tasks
 {
+    [TaskAttribute("DiskSpace")]
     class DiskSpaceTask : Task
     {
-        public override string TaskName
-        {
-            get { return "DiskSpace"; }
-        }
-
         private long WarningThreshold
         {
             get;

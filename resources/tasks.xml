@@ -1,4 +1,4 @@
 <tasks>
-    <task assemblyName="OhTehNoes.Tasks" typeName="OhTehNoes.Tasks.DiskSpaceTask" warningThreshold="10000000" />
-    <task assemblyName="OhTehNoes.Tasks" typeName="OhTehNoes.Tasks.SslCertificateTask" warningThreshold="20" certsToCheck="example.com;foo.com;bar.com" />
+    <task name="DiskSpace" warningThreshold="10000000" />
+    <task name="SslCertificate" warningThreshold="20" certsToCheck="example.com;foo.com;bar.com" />
 </tasks>

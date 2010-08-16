@@ -4,13 +4,9 @@ using System.Xml;
 
 namespace OhTehNoes.Tasks
 {
+    [Task("QueryReturnsRows")]
     class QueryReturnsRowsTask : Task
     {
-        public override string TaskName
-        {
-            get { return "QueryReturnsRows"; }
-        }
-
         private string Name
         {
             get;

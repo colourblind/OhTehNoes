@@ -4,13 +4,9 @@ using System.Xml;
 
 namespace OhTehNoes.Tasks
 {
+    [Task("FileUpToDate")]
     class FileUpToDateTask : Task
     {
-        public override string TaskName
-        {
-            get { return "FileUpToDate"; }
-        }
-
         public string Filename
         {
             get;

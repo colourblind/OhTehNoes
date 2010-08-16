@@ -6,13 +6,9 @@ using System.Xml;
 
 namespace OhTehNoes.Tasks
 {
+    [Task("SslCertificate")]
     class SslCertificateTask : Task
     {
-        public override string TaskName
-        {
-            get { return "SslCertificate"; }
-        }
-
         private int WarningThresholdInDays
         {
             get;

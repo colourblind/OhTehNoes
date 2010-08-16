@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Xml;
 using log4net;
 
@@ -6,11 +7,6 @@ namespace OhTehNoes
 {
     public abstract class Task
     {
-        public abstract string TaskName
-        {
-            get;
-        }
-
         protected Logger Logger
         {
             get;
@@ -30,5 +26,19 @@ namespace OhTehNoes
         }
 
         public abstract void Run();
+    }
+
+    public class TaskAttribute : Attribute
+    {
+        public string Name
+        {
+            get;
+            set;
+        }
+
+        public TaskAttribute(string name)
+        {
+            Name = name;
+        }
     }
 }

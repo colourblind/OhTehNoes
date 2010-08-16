@@ -66,4 +66,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>mkdir $(SolutionDir)OhTehNoes\bin\$(ConfigurationName)\plugins
+copy $(TargetDir)$(TargetFileName) $(SolutionDir)OhTehNoes\bin\$(ConfigurationName)\plugins /y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

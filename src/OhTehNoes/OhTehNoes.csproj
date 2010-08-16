@@ -53,10 +53,6 @@
       <Project>{E0112FC7-6ED4-452D-83A7-B628708AEF37}</Project>
       <Name>OhTehNoes.Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OhTehNoes.Tasks\OhTehNoes.Tasks.csproj">
-      <Project>{4C660948-21CA-4E46-BF6F-E3DF089051FD}</Project>
-      <Name>OhTehNoes.Tasks</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
