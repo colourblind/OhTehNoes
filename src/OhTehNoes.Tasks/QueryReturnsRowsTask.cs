@@ -25,7 +25,7 @@ namespace OhTehNoes.Tasks
             set;
         }
 
-        protected QueryReturnsRowsTask(Logger logger, XmlNode settings) : base(logger, settings)
+        public QueryReturnsRowsTask(Logger logger, XmlNode settings) : base(logger, settings)
         {
             Name = settings.Attributes["Name"].Value;
             ConnectionString = settings.Attributes["connectionString"].Value;

@@ -35,9 +35,14 @@ namespace OhTehNoes
                     Log.Error(message);
                     break;
                 case Priority.Fatal:
-                    Log.Error(message);
+                    Log.Fatal(message);
                     break;
             }
+        }
+
+        public void Write(string message, Exception e)
+        {
+            Log.Error(message, e);
         }
     }
 

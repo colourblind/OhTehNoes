@@ -27,10 +27,17 @@ namespace OhTehNoes
 
             LoadPlugins();
 
-            if (args.Length > 0)
-                LoadTasks(logger, args[0]);
-            else
-                LoadTasks(logger, null);
+            try
+            {
+                if (args.Length > 0)
+                    LoadTasks(logger, args[0]);
+                else
+                    LoadTasks(logger, null);
+            }
+            catch (FileNotFoundException ex)
+            {
+                logger.Write("Unable to load task file '" + ex.FileName + "'", Priority.Fatal);
+            }
 
             foreach (Task task in Tasks)
                 task.Run();
@@ -72,8 +79,15 @@ namespace OhTehNoes
                 {
                     Type pluginType = Plugins[node.Attributes["name"].Value];
                     object[] args = new object[] { logger, node };
-                    Task task = (Task)Activator.CreateInstance(pluginType, args);
-                    Tasks.Add(task);
+                    try
+                    {
+                        Task task = (Task)Activator.CreateInstance(pluginType, args);
+                        Tasks.Add(task);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Write("Unable to load plugin " + pluginType.Name, e);
+                    }
                 }
                 else
                     logger.Write("Unable to find '" + node.Attributes["name"].Value + "' plugin", Priority.Error);

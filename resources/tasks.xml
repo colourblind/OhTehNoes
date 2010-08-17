@@ -1,4 +1,6 @@
 <tasks>
     <task name="DiskSpace" warningThreshold="10000000" />
     <task name="SslCertificate" warningThreshold="20" certsToCheck="example.com;foo.com;bar.com" />
+    <task name="FileUpToDate" test="bar" />
+    <task name="QueryReturnsRows" />
 </tasks>
