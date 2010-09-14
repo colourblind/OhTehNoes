@@ -25,7 +25,7 @@ namespace OhTehNoes
         {
             Logger logger = new Logger();
 
-            LoadPlugins();
+            LoadPlugins(logger);
 
             try
             {
@@ -43,19 +43,21 @@ namespace OhTehNoes
                 task.Run();
         }
 
-        static void LoadPlugins()
+        static void LoadPlugins(Logger logger)
         {
             Plugins = new Dictionary<string, Type>();
 
             DirectoryInfo pluginDirectory = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "plugins"));
             foreach (FileInfo file in pluginDirectory.GetFiles("*.dll"))
             {
+                logger.Write(String.Format("Scanning {0} for tasks", file.Name), Priority.Debug);
                 Assembly assembly = Assembly.LoadFile(file.FullName);
                 foreach (Type type in assembly.GetTypes())
                 {
                     object[] attributes = type.GetCustomAttributes(typeof(TaskAttribute), true);
                     if (attributes != null)
                     {
+                        logger.Write(String.Format("Loading task {0}", type.FullName), Priority.Debug);
                         TaskAttribute taskAttribute = (TaskAttribute)attributes[0];
                         Plugins[taskAttribute.Name] = type;
                     }
@@ -86,7 +88,7 @@ namespace OhTehNoes
                     }
                     catch (Exception e)
                     {
-                        logger.Write("Unable to load plugin " + pluginType.Name, e);
+                        logger.Write(String.Format("Error creating {0} (try checking your arguments!)", pluginType.Name), e);
                     }
                 }
                 else
