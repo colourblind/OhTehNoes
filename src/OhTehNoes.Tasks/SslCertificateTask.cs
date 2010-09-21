@@ -40,12 +40,12 @@ namespace OhTehNoes.Tasks
                     Logger.Write(String.Format("Certificate for {0} missing!", certName), Priority.Warn);
                 else
                 {
+                    double daysRemaining = Double.MinValue;
                     foreach (X509Certificate2 cert in results)
-                    {
-                        double daysRemaning = cert.NotAfter.Subtract(DateTime.Now).TotalDays;
-                        if (daysRemaning < WarningThresholdInDays)
-                            Logger.Write(String.Format("Certificate for {0} only has {1:n0} days remaining!", certName, daysRemaning), Priority.Warn);
-                    }
+                        daysRemaining = Math.Max(daysRemaining, cert.NotAfter.Subtract(DateTime.Now).TotalDays);
+
+                    if (daysRemaining < WarningThresholdInDays)
+                        Logger.Write(String.Format("Certificate for {0} only has {1:n0} days remaining!", certName, daysRemaining), Priority.Warn);
                 }
             }
 
