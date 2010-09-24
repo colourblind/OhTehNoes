@@ -12,9 +12,14 @@ namespace OhTehNoes
             set;
         }
 
-        public Logger()
+        public Logger() : this("OhTehNoes")
         {
-            Log = LogManager.GetLogger("OhTehNoes");
+
+        }
+
+        public Logger(string logName)
+        {
+            Log = LogManager.GetLogger(logName);
             XmlConfigurator.Configure();
         }
 

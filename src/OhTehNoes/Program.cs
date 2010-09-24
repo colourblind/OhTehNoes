@@ -22,21 +22,32 @@ namespace OhTehNoes
 
         static void Main(string[] args)
         {
-            Logger logger = new Logger();
-
-            LoadPlugins(logger);
+            Logger logger = null;
+            XmlDocument taskFile = null;
 
             try
             {
-                if (args.Length > 0)
-                    LoadTasks(logger, args[0]);
-                else
-                    LoadTasks(logger, null);
+                string taskFilename = "tasks.xml";
+                if (args.Length > 0 && !String.IsNullOrEmpty(args[0]))
+                    taskFilename = args[0];
+
+                taskFile = new XmlDocument();
+                taskFile.Load(taskFilename);
             }
             catch (FileNotFoundException ex)
             {
+                logger = new Logger();
                 logger.Write("Unable to load task file '" + ex.FileName + "'", Priority.Fatal);
+                return;
             }
+
+            if (taskFile.DocumentElement.Attributes["logName"] == null)
+                logger = new Logger();
+            else
+                logger = new Logger(taskFile.DocumentElement.Attributes["logName"].Value);
+
+            LoadPlugins(logger);
+            LoadTasks(logger, taskFile);
 
             foreach (Task task in Tasks)
                 task.Run();
@@ -70,17 +81,11 @@ namespace OhTehNoes
             }
         }
 
-        static void LoadTasks(Logger logger, string taskFilename)
+        static void LoadTasks(Logger logger, XmlDocument taskFile)
         {
             Tasks = new List<Task>();
 
-            if (String.IsNullOrEmpty(taskFilename))
-                taskFilename = "tasks.xml";
-
-            XmlDocument settings = new XmlDocument();
-            settings.Load(taskFilename);
-
-            foreach (XmlNode node in settings.DocumentElement.ChildNodes)
+            foreach (XmlNode node in taskFile.DocumentElement.ChildNodes)
             {
                 if (Plugins.ContainsKey(node.Attributes["type"].Value))
                 {
