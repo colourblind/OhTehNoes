@@ -37,7 +37,7 @@ namespace OhTehNoes.Tasks
             {
                 X509Certificate2Collection results = store.Certificates.Find(X509FindType.FindBySubjectName, certName, false);
                 if (results.Count == 0)
-                    Logger.Write(String.Format("Certificate for {0} missing!", certName), Priority.Warn);
+                    Logger.Write(this, String.Format("Certificate for {0} missing!", certName), Priority.Warn);
                 else
                 {
                     double daysRemaining = Double.MinValue;
@@ -45,7 +45,7 @@ namespace OhTehNoes.Tasks
                         daysRemaining = Math.Max(daysRemaining, cert.NotAfter.Subtract(DateTime.Now).TotalDays);
 
                     if (daysRemaining < WarningThresholdInDays)
-                        Logger.Write(String.Format("Certificate for {0} only has {1:n0} days remaining!", certName, daysRemaining), Priority.Warn);
+                        Logger.Write(this, String.Format("Certificate for {0} only has {1:n0} days remaining!", certName, daysRemaining), Priority.Warn);
                 }
             }
 

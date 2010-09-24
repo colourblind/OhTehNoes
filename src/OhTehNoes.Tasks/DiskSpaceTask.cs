@@ -30,7 +30,7 @@ namespace OhTehNoes.Tasks
                 {
                     if (drive.AvailableFreeSpace < WarningThreshold)
                     {
-                        Logger.Write(String.Format("{0:n0} MB left on drive: {1}", drive.AvailableFreeSpace / (1024 * 1024), drive.Name), Priority.Warn);
+                        Logger.Write(this, String.Format("{0:n0} MB left on drive: {1}", drive.AvailableFreeSpace / (1024 * 1024), drive.Name), Priority.Warn);
                     }
                 }
             }

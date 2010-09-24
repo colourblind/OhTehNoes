@@ -19,6 +19,17 @@ namespace OhTehNoes
             private set;
         }
 
+        public string Name
+        {
+            get
+            {
+                if (Settings.Attributes["name"] == null)
+                    return String.Empty;
+                else
+                    return Settings.Attributes["name"].Value;
+            }
+        }
+
         protected Task(Logger logger, XmlNode settings)
         {
             Logger = logger;

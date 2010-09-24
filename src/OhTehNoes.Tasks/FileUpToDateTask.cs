@@ -34,7 +34,7 @@ namespace OhTehNoes.Tasks
             int fileAgeInMinutes = Convert.ToInt32(DateTime.Now.Subtract(lastEditTime).TotalMinutes);
 
             if (fileAgeInMinutes > ThresholdInMinutes)
-                Logger.Write(String.Format("File '{0}' is out of date! Theshold(m): {1}, Age(m): {2}", Filename, ThresholdInMinutes, fileAgeInMinutes), Priority.Warn);
+                Logger.Write(this, String.Format("File '{0}' is out of date! Theshold(m): {1}, Age(m): {2}", Filename, ThresholdInMinutes, fileAgeInMinutes), Priority.Warn);
         }
     }
 }

@@ -18,6 +18,11 @@ namespace OhTehNoes
             XmlConfigurator.Configure();
         }
 
+        public void Write(Task task, string message, Priority priority)
+        {
+            Write(String.Format("{0}{1}", String.IsNullOrEmpty(task.Name) ? String.Empty : task.Name + " - ", message), priority);
+        }
+
         public void Write(string message, Priority priority)
         {
             switch (priority)

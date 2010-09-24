@@ -45,7 +45,7 @@ namespace OhTehNoes.Tasks
                 reader = command.ExecuteReader();
 
                 if (!reader.HasRows)
-                    Logger.Write(String.Format("Query '{0}' returned no rows!", Name), Priority.Warn);
+                    Logger.Write(this, String.Format("Query '{0}' returned no rows!", Name), Priority.Warn);
             }
             finally
             {
