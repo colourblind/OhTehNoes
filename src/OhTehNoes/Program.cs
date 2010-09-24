@@ -49,16 +49,22 @@ namespace OhTehNoes
             DirectoryInfo pluginDirectory = new DirectoryInfo(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, "plugins"));
             foreach (FileInfo file in pluginDirectory.GetFiles("*.dll"))
             {
-                logger.Write(String.Format("Scanning {0} for tasks", file.Name), Priority.Debug);
+                logger.Write(String.Format("Searching {0} for plugins", file.Name), Priority.Debug);
                 Assembly assembly = Assembly.LoadFile(file.FullName);
                 foreach (Type type in assembly.GetTypes())
                 {
                     object[] attributes = type.GetCustomAttributes(typeof(TaskAttribute), true);
                     if (attributes != null)
                     {
-                        logger.Write(String.Format("Loading task {0}", type.FullName), Priority.Debug);
-                        TaskAttribute taskAttribute = (TaskAttribute)attributes[0];
-                        Plugins[taskAttribute.Name] = type;
+                        foreach (object attribute in attributes)
+                        {
+                            if (attribute is TaskAttribute)
+                            {
+                                logger.Write(String.Format("Loading plugin {0}", type.FullName), Priority.Debug);
+                                TaskAttribute taskAttribute = (TaskAttribute)attributes[0];
+                                Plugins[taskAttribute.TypeName] = type;
+                            }
+                        }
                     }
                 }
             }
@@ -76,9 +82,9 @@ namespace OhTehNoes
 
             foreach (XmlNode node in settings.DocumentElement.ChildNodes)
             {
-                if (Plugins.ContainsKey(node.Attributes["name"].Value))
+                if (Plugins.ContainsKey(node.Attributes["type"].Value))
                 {
-                    Type pluginType = Plugins[node.Attributes["name"].Value];
+                    Type pluginType = Plugins[node.Attributes["type"].Value];
                     object[] args = new object[] { logger, node };
                     try
                     {
@@ -91,7 +97,7 @@ namespace OhTehNoes
                     }
                 }
                 else
-                    logger.Write("Unable to find '" + node.Attributes["name"].Value + "' plugin", Priority.Error);
+                    logger.Write("Unable to find '" + node.Attributes["type"].Value + "' plugin", Priority.Error);
             }
         }
     }

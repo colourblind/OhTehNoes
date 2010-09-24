@@ -30,15 +30,15 @@ namespace OhTehNoes
 
     public class TaskAttribute : Attribute
     {
-        public string Name
+        public string TypeName
         {
             get;
             set;
         }
 
-        public TaskAttribute(string name)
+        public TaskAttribute(string typeName)
         {
-            Name = name;
+            TypeName = typeName;
         }
     }
 }
