@@ -1,7 +1,16 @@
-<tasks>
+<tasks logName="Test Logger">
     <task type="DiskSpace" warningThreshold="10000000" />
     <task type="SslCertificate" warningThreshold="20" certsToCheck="example.com;" />
     <task type="SslCertificate" name="Cert Check 2" warningThreshold="10" certsToCheck="foo.com;bar.com" />
     <task type="FileUpToDate" filename="C:\Tom\dev\OhTehNoes\resources\tasks.xml" thresholdInMinutes="1000" />
-    <task type="QueryReturnsRows" />
+    <task type="QueryReturnsRows" 
+        name="Db Test"
+        connectionString="Data Source=localhost\sqlexpress;Initial Catalog=ComparesFavourably.Test;Integrated Security=true;"
+        sqlQuery="select top 1 * from TestTableBasic"
+    />
+    <task type="QueryReturnsRows" 
+        name="Db Test"
+        connectionString="Data Source=localhost\sqlexpress;Initial Catalog=ComparesFavourably.Test;Integrated Security=true;"
+        sqlQuery="select top 1 * from TestTableDefaults"
+    />
 </tasks>
