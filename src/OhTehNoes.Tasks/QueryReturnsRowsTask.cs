@@ -7,12 +7,6 @@ namespace OhTehNoes.Tasks
     [Task("QueryReturnsRows")]
     class QueryReturnsRowsTask : Task
     {
-        private string Name
-        {
-            get;
-            set;
-        }
-
         private string ConnectionString
         {
             get;
@@ -27,7 +21,6 @@ namespace OhTehNoes.Tasks
 
         public QueryReturnsRowsTask(Logger logger, XmlNode settings) : base(logger, settings)
         {
-            Name = settings.Attributes["Name"].Value;
             ConnectionString = settings.Attributes["connectionString"].Value;
             SqlQuery = settings.Attributes["sqlQuery"].Value;
         }
@@ -42,6 +35,7 @@ namespace OhTehNoes.Tasks
             {
                 connection = new SqlConnection(ConnectionString);
                 command = new SqlCommand(SqlQuery, connection);
+                command.Connection.Open();
                 reader = command.ExecuteReader();
 
                 if (!reader.HasRows)
