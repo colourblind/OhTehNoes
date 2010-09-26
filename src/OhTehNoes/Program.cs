@@ -46,11 +46,18 @@ namespace OhTehNoes
             else
                 logger = new Logger(taskFile.DocumentElement.Attributes["logName"].Value);
 
-            LoadPlugins(logger);
-            LoadTasks(logger, taskFile);
+            try
+            {
+                LoadPlugins(logger);
+                LoadTasks(logger, taskFile);
 
-            foreach (Task task in Tasks)
-                task.Run();
+                foreach (Task task in Tasks)
+                    task.Run();
+            }
+            catch (Exception ex)
+            {
+                logger.Write("Ruh roh! Uncaught exception!", ex);
+            }
         }
 
         static void LoadPlugins(Logger logger)
@@ -96,9 +103,12 @@ namespace OhTehNoes
                         Task task = (Task)Activator.CreateInstance(pluginType, args);
                         Tasks.Add(task);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        logger.Write(String.Format("Error creating {0} (try checking your arguments!)", pluginType.Name), e);
+                        if (node.Attributes["name"] == null)
+                            logger.Write(String.Format("Error creating unnamed task of type {0} (try checking the attributes in your taskfile!)", pluginType.Name), Priority.Error);
+                        else
+                            logger.Write(String.Format("Error creating '{1}' of type {0} (try checking the attributes in your taskfile!)", pluginType.Name, node.Attributes["name"].Value), Priority.Error);
                     }
                 }
                 else
