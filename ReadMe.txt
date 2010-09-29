@@ -8,6 +8,15 @@ OhTehNoes [taskFile]
 
 taskFile    The tasks to run. If this is not supplied, OhTehNoes will try 
             to use tasks.xml from the current working directory.
+            
+LOGGING
+
+Oh Teh Noes uses a slightly tweaked version of log4net (as far as I know I am
+OK to distribute modified binaries, so I'll keep doing that until someone sets
+me straight), and the logging details are in the App.config file. Please refer 
+to the log4net documentation if you want to make any changes (start with the 
+recipient email address - there's not a log I can do if your server is about 
+to die.)
 
 PLUGINS
 
