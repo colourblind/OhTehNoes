@@ -15,12 +15,12 @@ Oh Teh Noes uses a slightly tweaked version of log4net (as far as I know I am
 OK to distribute modified binaries, so I'll keep doing that until someone sets
 me straight), and the logging details are in the App.config file. Please refer 
 to the log4net documentation if you want to make any changes (start with the 
-recipient email address - there's not a log I can do if your server is about 
+recipient email address - there's not a lot I can do if your server is about 
 to die.)
 
 PLUGINS
 
-All of the operations that Oh Teh Noes can perform (even the core 
+All of the operations that Oh Teh Noes can perform (including the core 
 functionality) it loads from plugins. When run, OhTehNoes will scan the 
 /plugins/ directory and attempt to load tasks from the assemblies in there.
 
