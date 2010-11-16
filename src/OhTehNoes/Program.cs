@@ -72,7 +72,7 @@ namespace OhTehNoes
                 foreach (Type type in assembly.GetTypes())
                 {
                     object[] attributes = type.GetCustomAttributes(typeof(TaskAttribute), true);
-                    if (attributes != null)
+                    if (type.IsSubclassOf(typeof(Task)) && attributes != null)
                     {
                         foreach (object attribute in attributes)
                         {
